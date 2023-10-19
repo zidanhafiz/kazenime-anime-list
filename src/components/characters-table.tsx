@@ -5,14 +5,14 @@ import { Character } from '@/types';
 const CharactersTable = ({ characters }: { characters: Character[] }) => {
   const defaultAvatar = '/male-icon.svg';
   return (
-    <Table className='flex justify-between gap-8 w-full'>
+    <Table className='flex justify-between items-stretch gap-8 w-full'>
       <TableBody className='w-full'>
         {characters.map(
           (chara: Character, i: number) =>
             i < 5 && (
               <TableRow
                 key={chara.character.mal_id}
-                className='even:bg-slate-200 dark:even:bg-gray-900 pointer-events-none flex justify-between'
+                className='even:bg-slate-200 h-[125px]  items-center dark:even:bg-gray-900 pointer-events-none flex justify-between'
               >
                 <section>
                   <TableCell className='font-medium'>
@@ -36,7 +36,7 @@ const CharactersTable = ({ characters }: { characters: Character[] }) => {
                 <section>
                   <TableCell className='text-right'>
                     <p className='font-semibold'>
-                      {chara.voice_actors[0].person.name}
+                      {chara.voice_actors[0]?.person.name}
                     </p>
                     <p>Japanese</p>
                   </TableCell>
@@ -48,7 +48,7 @@ const CharactersTable = ({ characters }: { characters: Character[] }) => {
                           ? chara.voice_actors[0].person.images.jpg.image_url
                           : defaultAvatar
                       }
-                      alt={chara.voice_actors[0].person.name}
+                      alt={chara.voice_actors[0]?.person.name}
                       width={100}
                       height={100}
                     />
@@ -65,7 +65,7 @@ const CharactersTable = ({ characters }: { characters: Character[] }) => {
             i < 10 && (
               <TableRow
                 key={chara.character.mal_id}
-                className='even:bg-slate-200 dark:even:bg-gray-900 pointer-events-none flex justify-between'
+                className='even:bg-slate-200 h-[125px] items-center dark:even:bg-gray-900 pointer-events-none flex justify-between'
               >
                 <section>
                   <TableCell className='font-medium'>

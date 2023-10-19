@@ -7,6 +7,7 @@ import { BreadcumbsProps, Info } from '@/types';
 import SidebarDetail from '@/components/sidebar-detail';
 import YouTubePlayer from '@/components/youtube-player';
 import CharactersTable from '@/components/characters-table';
+import StaffTable from '@/components/staff-table';
 
 const url = process.env.ANIME_API_URL;
 
@@ -52,6 +53,14 @@ const getAnimeCharacters = async (id: string) => {
   return await res.json();
 };
 
+const getAnimeStaff = async (id: string) => {
+  const res = await fetch(`${url}/${id}/staff`);
+  if (!res.ok) {
+    throw new Error('error get data');
+  }
+  return await res.json();
+};
+
 const AnimeDetailPage = async ({
   params: { id },
 }: {
@@ -59,11 +68,17 @@ const AnimeDetailPage = async ({
 }) => {
   const animeData = getAnimeDetails(id);
   const charactersData = getAnimeCharacters(id);
-  const [animeRes, charactersRes] = await Promise.all([
+  const staffData = getAnimeStaff(id);
+  const [animeRes, charactersRes, staffRes] = await Promise.all([
     animeData,
     charactersData,
+    staffData,
   ]);
-  const [anime, characters] = [animeRes.data, charactersRes.data];
+  const [anime, characters, staff] = [
+    animeRes.data,
+    charactersRes.data,
+    staffRes.data,
+  ];
 
   const info: Info[] = [
     {
@@ -170,7 +185,7 @@ const AnimeDetailPage = async ({
             </section>
             <section className='mt-12'>
               <h2 className='mb-3 font-semibold'>Trailer</h2>
-              <hr />
+              <hr className='mb-3' />
               <YouTubePlayer videoId={anime?.trailer?.youtube_id} />
             </section>
             <section className='mt-12'>
@@ -178,6 +193,12 @@ const AnimeDetailPage = async ({
               <hr />
               {/* Characters Table	 */}
               <CharactersTable characters={characters} />
+            </section>
+            <section className='mt-12'>
+              <h2 className='mb-3 font-semibold'>Staff</h2>
+              <hr />
+              {/* Staf Table */}
+              <StaffTable staff={staff} />
             </section>
           </main>
         </div>
