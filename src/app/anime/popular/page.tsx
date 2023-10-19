@@ -51,7 +51,10 @@ const PopularAnimePage = async ({ searchParams }: SearchParamsProps) => {
             results
           </p>
         )}
-        <Pagination pagination={pagination} link={`/anime/popular?`} />
+        <Pagination
+          pagination={pagination}
+          link={`/anime/popular?`}
+        />
       </div>
     </div>
   );

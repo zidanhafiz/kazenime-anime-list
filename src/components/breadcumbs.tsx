@@ -29,7 +29,10 @@ const Breadcumbs = ({ items }: { items: BreadcumbsProps[] }) => {
             <span>{item.name}</span>
           </Link>
           {length && i < length - 1 && (
-            <ChevronRight size={18} key={item.name} />
+            <ChevronRight
+              size={18}
+              key={item.name}
+            />
           )}
         </>
       ))}

@@ -18,7 +18,10 @@ const Header = () => {
   };
   return (
     <div className='pt-6 pb-4 grid md:flex md:justify-between md:items-center border-b-2'>
-      <Link href={'/'} className='text-3xl font-bold col-start-1'>
+      <Link
+        href={'/'}
+        className='text-3xl font-bold col-start-1'
+      >
         Kazenime
       </Link>
       <div className='flex md:items-center justify-center md:flex-row flex-col-reverse gap-3 row-start-2 col-span-2 mt-5 md:mt-0'>
@@ -29,7 +32,10 @@ const Header = () => {
           onSubmit={(e) => handleSearch(e)}
           className='flex gap-2 justify-center'
         >
-          <SelectInput select={select} setSelect={setSelect} />
+          <SelectInput
+            select={select}
+            setSelect={setSelect}
+          />
           <Input
             type='text'
             className='h-8 md:w-full max-w-[300px]'

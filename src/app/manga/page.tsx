@@ -51,7 +51,10 @@ const MangaPage = async ({ searchParams }: SearchParamsProps) => {
             results
           </p>
         )}
-        <Pagination pagination={pagination} link={`/manga?`} />
+        <Pagination
+          pagination={pagination}
+          link={`/manga?`}
+        />
       </div>
     </div>
   );

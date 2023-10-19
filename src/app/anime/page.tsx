@@ -51,7 +51,10 @@ const AnimePage = async ({ searchParams }: SearchParamsProps) => {
             results
           </p>
         )}
-        <Pagination pagination={pagination} link={`/anime?`} />
+        <Pagination
+          pagination={pagination}
+          link={`/anime?`}
+        />
       </div>
     </div>
   );

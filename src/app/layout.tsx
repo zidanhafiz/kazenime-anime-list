@@ -7,26 +7,30 @@ import { ThemeProvider } from '@/components/theme-provider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'Kazenime',
-	description: 'Anime and Manga List',
+  title: 'Kazenime',
+  description: 'Anime and Manga List',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-	return (
-		<html lang='en'>
-			<body className={inter.className}>
-				<ThemeProvider
-					attribute='class'
-					defaultTheme='system'
-					enableSystem
-					disableTransitionOnChange
-				>
-					<div className='mx-[5%] md:mx-auto md:px-12 max-w-[1600px]'>
-						<Header />
-						{children}
-					</div>
-				</ThemeProvider>
-			</body>
-		</html>
-	);
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang='en'>
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className='mx-[5%] md:mx-auto md:px-12 max-w-[1600px]'>
+            <Header />
+            {children}
+          </div>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
 }

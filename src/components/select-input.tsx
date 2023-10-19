@@ -15,7 +15,10 @@ interface SelectProps {
 
 export function SelectInput({ select, setSelect }: SelectProps) {
   return (
-    <Select onValueChange={setSelect} value={select}>
+    <Select
+      onValueChange={setSelect}
+      value={select}
+    >
       <SelectTrigger className='w-[100px] h-8'>
         <SelectValue placeholder='Filter' />
       </SelectTrigger>
