@@ -90,3 +90,12 @@ export interface Staff {
   };
   positions: string[];
 }
+
+export type RelatedTableProps = {
+  relation: string;
+  entry: {
+    mal_id: number;
+    name: string;
+    url: string;
+  }[];
+};
