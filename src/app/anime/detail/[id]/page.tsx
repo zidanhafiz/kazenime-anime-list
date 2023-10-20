@@ -8,6 +8,7 @@ import SidebarDetail from '@/components/sidebar-detail';
 import YouTubePlayer from '@/components/youtube-player';
 import CharactersTable from '@/components/characters-table';
 import StaffTable from '@/components/staff-table';
+import RelatedTable from '@/components/related-table';
 
 const url = process.env.ANIME_API_URL;
 
@@ -161,10 +162,7 @@ const AnimeDetailPage = async ({
       </header>
       <main className='mt-10 grid md:grid-cols-2 lg:grid-cols-4'>
         {/* Sidebar Section */}
-        <SidebarDetail
-          anime={anime}
-          info={info}
-        />
+        <SidebarDetail anime={anime} info={info} />
         <div className='lg:col-span-3 mx-2'>
           {/* Breadcumbs */}
           <Breadcumbs items={breadcumbsItems} />
@@ -187,6 +185,11 @@ const AnimeDetailPage = async ({
               <h2 className='mb-3 font-semibold'>Trailer</h2>
               <hr className='mb-3' />
               <YouTubePlayer videoId={anime?.trailer?.youtube_id} />
+            </section>
+            <section className='mt-12'>
+              <h2 className='mb-3 font-semibold'>Related Anime</h2>
+              <hr className='mb-3' />
+              <RelatedTable relations={anime.relations} />
             </section>
             <section className='mt-12'>
               <h2 className='mb-3 font-semibold'>Characters</h2>

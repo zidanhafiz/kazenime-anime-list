@@ -5,19 +5,19 @@ import { Staff } from '@/types';
 const StaffTable = ({ staff }: { staff: Staff[] }) => {
   const defaultAvatar = '/male-icon.svg';
   return (
-    <Table className='flex justify-between items-stretch gap-8 w-full'>
+    <Table className='flex justify-between overflow-hidden items-stretch gap-8 w-full'>
       <TableBody className='w-full'>
         {staff.map(
           (chara, i: number) =>
             i < 3 && (
               <TableRow
                 key={chara.person.mal_id}
-                className='even:bg-slate-200 h-[125px] items-center dark:even:bg-gray-900 pointer-events-none flex justify-between'
+                className='even:bg-slate-200 h-[110px] items-center dark:even:bg-gray-900 pointer-events-none flex justify-between'
               >
-                <section>
-                  <TableCell className='font-medium'>
+                <TableCell className='flex items-center gap-3'>
+                  <div className='font-medium'>
                     <Image
-                      className='max-w-[60px]'
+                      className='max-w-[50px]'
                       src={
                         chara.person.images.jpg.image_url
                           ? chara.person.images.jpg.image_url
@@ -27,8 +27,8 @@ const StaffTable = ({ staff }: { staff: Staff[] }) => {
                       width={100}
                       height={150}
                     />
-                  </TableCell>
-                  <TableCell>
+                  </div>
+                  <div>
                     <p className='font-semibold'>{chara.person.name}</p>
                     <p>
                       {chara.positions.map((pos, i: number) =>
@@ -39,8 +39,8 @@ const StaffTable = ({ staff }: { staff: Staff[] }) => {
                         ),
                       )}
                     </p>
-                  </TableCell>
-                </section>
+                  </div>
+                </TableCell>
               </TableRow>
             ),
         )}
@@ -52,12 +52,12 @@ const StaffTable = ({ staff }: { staff: Staff[] }) => {
             i < 6 && (
               <TableRow
                 key={chara.person.mal_id}
-                className='even:bg-slate-200 h-[125px] items-center dark:even:bg-gray-900 pointer-events-none flex justify-between'
+                className='even:bg-slate-200 h-[110px] items-center dark:even:bg-gray-900 pointer-events-none flex justify-between'
               >
-                <section>
-                  <TableCell className='font-medium'>
+                <TableCell className='flex items-center gap-3'>
+                  <div className='font-medium'>
                     <Image
-                      className='max-w-[60px]'
+                      className='max-w-[50px]'
                       src={
                         chara.person.images.jpg.image_url
                           ? chara.person.images.jpg.image_url
@@ -67,8 +67,8 @@ const StaffTable = ({ staff }: { staff: Staff[] }) => {
                       width={100}
                       height={100}
                     />
-                  </TableCell>
-                  <TableCell>
+                  </div>
+                  <div>
                     <p className='font-semibold'>{chara.person.name}</p>
                     <p>
                       {chara.positions.map((pos, i: number) =>
@@ -79,8 +79,8 @@ const StaffTable = ({ staff }: { staff: Staff[] }) => {
                         ),
                       )}
                     </p>
-                  </TableCell>
-                </section>
+                  </div>
+                </TableCell>
               </TableRow>
             ),
         )}
