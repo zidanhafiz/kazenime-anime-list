@@ -33,16 +33,16 @@ const StaffTable = ({ staff }: { staff: Staff[] }) => {
                     <p>
                       {chara.positions.map((pos, i: number) =>
                         i !== chara.positions.length - 1 ? (
-                          <>{pos}, </>
+                          <span key={i}>{pos}, </span>
                         ) : (
-                          <>{pos}</>
-                        ),
+                          <span key={i}>{pos}</span>
+                        )
                       )}
                     </p>
                   </div>
                 </TableCell>
               </TableRow>
-            ),
+            )
         )}
       </TableBody>
       <TableBody className='w-full'>
@@ -73,16 +73,16 @@ const StaffTable = ({ staff }: { staff: Staff[] }) => {
                     <p>
                       {chara.positions.map((pos, i: number) =>
                         i !== chara.positions.length - 1 ? (
-                          <>{pos}, </>
+                          <span key={i}>{pos}, </span>
                         ) : (
-                          <>{pos}</>
-                        ),
+                          <span key={i}>{pos}</span>
+                        )
                       )}
                     </p>
                   </div>
                 </TableCell>
               </TableRow>
-            ),
+            )
         )}
       </TableBody>
     </Table>

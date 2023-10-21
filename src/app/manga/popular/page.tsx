@@ -1,7 +1,7 @@
 import CardList from '@/components/card-list';
 import HeadTitle from '@/components/head-title';
 import Pagination from '@/components/pagination';
-import { Mangas, SearchParamsProps } from '@/types';
+import { BreadcumbsProps, Mangas, SearchParamsProps } from '@/types';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -23,10 +23,20 @@ const PopularMangaPage = async ({ searchParams }: SearchParamsProps) => {
   const page = searchParams['page'] ?? 1;
   const mangas = await getPopularMangas(`${page}`);
   const pagination = mangas.pagination;
+  const breadcumbsItems: BreadcumbsProps[] = [
+    {
+      name: 'Manga',
+      path: '/manga',
+    },
+    {
+      name: 'Popular Manga',
+      path: '/manga/popular',
+    },
+  ];
 
   return (
     <div>
-      <HeadTitle>Popular Manga</HeadTitle>
+      <HeadTitle items={breadcumbsItems}>Popular Manga</HeadTitle>
       <main className='flex min-h-screen items-strecth justify-center lg:justify-between flex-wrap gap-3 md:gap-6 mt-10'>
         {mangas.data.map((data: Mangas) => (
           <CardList
@@ -41,14 +51,12 @@ const PopularMangaPage = async ({ searchParams }: SearchParamsProps) => {
       <div className='my-16 flex flex-col items-center'>
         {pagination.current_page === 1 ? (
           <p className='mb-4'>
-            showing {pagination.current_page} to {25} of{' '}
-            {pagination.items.total} results
+            showing {pagination.current_page} to {25} of {pagination.items.total} results
           </p>
         ) : (
           <p className='mb-4'>
-            showing {pagination.current_page * 25} to{' '}
-            {pagination.current_page * 25 + 25} of {pagination.items.total}{' '}
-            results
+            showing {pagination.current_page * 25} to {pagination.current_page * 25 + 25}{' '}
+            of {pagination.items.total} results
           </p>
         )}
         <Pagination

@@ -5,7 +5,7 @@ import useSWR from 'swr';
 import CardList from '@/components/card-list';
 import { fetcher } from '@/lib/fetcher';
 import Loading from '@/app/loading';
-import { Animes } from '@/types';
+import { Animes, BreadcumbsProps } from '@/types';
 import HeadTitle from '@/components/head-title';
 import Pagination from '@/components/pagination';
 
@@ -16,6 +16,14 @@ const SearchPage = () => {
   const search = params.get('q');
   const select = params.get('s');
   const page = params.get('page') ?? 1;
+
+  const breadcumbsItems: BreadcumbsProps[] = [
+    {
+      name: 'Search',
+      path: `/search?q=${search}&s=${select}`,
+    },
+  ];
+
   const { data, isLoading, error } = useSWR(
     `${url}/${select}?q=${search}&page=${page}`,
     fetcher
@@ -30,7 +38,12 @@ const SearchPage = () => {
         <Loading />
       ) : (
         <>
-          <HeadTitle className='text-lg'>Search Result : {search}</HeadTitle>
+          <HeadTitle
+            className='text-lg'
+            items={breadcumbsItems}
+          >
+            Search Result : {search}
+          </HeadTitle>
           <main className='flex items-strecth justify-center lg:justify-center flex-wrap gap-6 mt-10'>
             {data.data.map((item: Animes) => (
               <CardList

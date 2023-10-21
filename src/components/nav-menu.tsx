@@ -85,12 +85,12 @@ export function NavMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NextLink
-            href='/genre'
+            href='/genres'
             legacyBehavior
             passHref
           >
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Genre
+              Genres
             </NavigationMenuLink>
           </NextLink>
         </NavigationMenuItem>
@@ -114,7 +114,7 @@ const Link = ({ href, title, children }: LinkProps) => {
     >
       <NavigationMenuLink
         className={cn(
-          'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+          'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
         )}
       >
         <div className='text-sm font-medium leading-none'>{title}</div>

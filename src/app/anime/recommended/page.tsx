@@ -1,6 +1,6 @@
 import CardList from '@/components/card-list';
 import { Metadata } from 'next';
-import { ImageSrc, SearchParamsProps } from '@/types';
+import { BreadcumbsProps, ImageSrc, SearchParamsProps } from '@/types';
 import HeadTitle from '@/components/head-title';
 import Pagination from '@/components/pagination';
 
@@ -34,10 +34,20 @@ const RecommendAnimePage = async ({ searchParams }: SearchParamsProps) => {
   const page = searchParams['page'] ?? 1;
   const animes = await getRecommendAnimes(`${page}`);
   // const pagination = animes.pagination;
+  const breadcumbsItems: BreadcumbsProps[] = [
+    {
+      name: 'Anime',
+      path: '/anime',
+    },
+    {
+      name: 'Recommended Anime',
+      path: '/anime/recommended',
+    },
+  ];
 
   return (
     <div>
-      <HeadTitle>Recommended Anime</HeadTitle>
+      <HeadTitle items={breadcumbsItems}>Recommended Anime</HeadTitle>
       <main className='flex min-h-screen items-strecth justify-center lg:justify-between flex-wrap gap-3 md:gap-6 mt-10'>
         {animes.data.map((data: AnimesRecommend) => (
           <CardList

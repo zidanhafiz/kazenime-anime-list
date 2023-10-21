@@ -7,6 +7,9 @@ import { Input } from './ui/input';
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { SelectInput } from './select-input';
+import { Monoton } from 'next/font/google';
+
+const monoton = Monoton({ weight: '400', subsets: ['latin'] });
 
 const Header = () => {
   const router = useRouter();
@@ -20,7 +23,7 @@ const Header = () => {
     <div className='pt-6 pb-4 grid md:flex md:justify-between md:items-center border-b-2'>
       <Link
         href={'/'}
-        className='text-3xl font-bold col-start-1'
+        className={`${monoton.className} text-3xl font-bold col-start-1`}
       >
         Kazenime
       </Link>

@@ -5,7 +5,6 @@ import ScoreBoard from '@/components/score-board';
 import SidebarDetail from '@/components/sidebar-detail';
 import { BreadcumbsProps } from '@/types';
 import type { Metadata, ResolvingMetadata } from 'next';
-import Image from 'next/image';
 
 type Props = {
   params: { id: string };
@@ -26,7 +25,7 @@ export async function generateMetadata(
   // const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    title: product.data.title + ' | Kazenime',
+    title: product.data.title + ' - Kazenime',
     // openGraph: {
     // 	images: ['/some-specific-page-image.jpg', ...previousImages],
     // },

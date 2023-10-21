@@ -1,11 +1,12 @@
 import Header from '@/components/header';
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Monoton } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import Footer from '@/components/footer';
 
 const inter = Inter({ subsets: ['latin'] });
+export const monoton = Monoton({ weight: '400', subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Kazenime',
@@ -15,7 +16,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body
+        className={`${inter.className} bg-gradient-to-tr from-biru via-background to-biru`}
+      >
         <ThemeProvider
           attribute='class'
           defaultTheme='system'

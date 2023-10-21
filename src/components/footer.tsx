@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import { monoton } from '@/app/layout';
 
 const Footer = () => {
   return (
@@ -10,19 +10,10 @@ const Footer = () => {
             href='/'
             className='flex items-center mb-4 sm:mb-0'
           >
-            <Image
-              src='https://flowbite.com/docs/images/logo.svg'
-              className='h-8 w-auto mr-3'
-              alt='Kazenime Logo'
-              width={500}
-              height={500}
-            />
-            <span className='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
-              Kazenime
-            </span>
+            <p className={`${monoton.className} text-2xl`}>Kazenime</p>
           </a>
           <ul className='flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400'>
-            <li>
+            <li key='about'>
               <Link
                 href='/about'
                 className='mr-4 hover:underline md:mr-6 '
@@ -30,7 +21,7 @@ const Footer = () => {
                 About
               </Link>
             </li>
-            <li>
+            <li key='privacy'>
               <Link
                 href='/privacy'
                 className='mr-4 hover:underline md:mr-6'
@@ -38,7 +29,7 @@ const Footer = () => {
                 Privacy Policy
               </Link>
             </li>
-            <li>
+            <li key='licensing'>
               <Link
                 href='/licensing'
                 className='mr-4 hover:underline md:mr-6 '
@@ -46,7 +37,7 @@ const Footer = () => {
                 Licensing
               </Link>
             </li>
-            <li>
+            <li key='contact'>
               <Link
                 href='/contact'
                 className='hover:underline'

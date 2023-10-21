@@ -62,7 +62,7 @@ const SidebarDetail = ({ data, info }: any) => {
             {data?.streaming?.map((item: { name: string; url: string }) => (
               <a
                 className='font-base block leading-7 text-primary hover:underline'
-                key={item.name}
+                key={item.url}
                 href={item.url}
                 target='_blank'
               >

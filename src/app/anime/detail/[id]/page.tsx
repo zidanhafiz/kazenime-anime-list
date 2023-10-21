@@ -1,6 +1,4 @@
 import type { Metadata, ResolvingMetadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 import Breadcumbs from '@/components/breadcumbs';
 import ScoreBoard from '@/components/score-board';
 import { BreadcumbsProps, Info } from '@/types';
@@ -31,7 +29,7 @@ export async function generateMetadata(
   // const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    title: product.data.title + ' | Kazenime',
+    title: product.data.title + ' - Kazenime',
     // openGraph: {
     // 	images: ['/some-specific-page-image.jpg', ...previousImages],
     // },
