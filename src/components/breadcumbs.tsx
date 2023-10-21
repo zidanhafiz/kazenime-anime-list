@@ -20,7 +20,10 @@ const Breadcumbs = ({ items }: { items: BreadcumbsProps[] }) => {
       </Link>
       <ChevronRight size={18} />
       {items.map((item: Item, i: number) => (
-        <>
+        <div
+          key={item.name}
+          className='flex items-center gap-2'
+        >
           <Link
             key={item.name}
             href={item.path}
@@ -34,7 +37,7 @@ const Breadcumbs = ({ items }: { items: BreadcumbsProps[] }) => {
               key={item.name}
             />
           )}
-        </>
+        </div>
       ))}
     </div>
   );

@@ -19,7 +19,7 @@ type Props = {
 
 export async function generateMetadata(
   { params }: Props,
-  parent: ResolvingMetadata,
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
   // read route params
   const id = params.id;
@@ -62,11 +62,7 @@ const getAnimeStaff = async (id: string) => {
   return await res.json();
 };
 
-const AnimeDetailPage = async ({
-  params: { id },
-}: {
-  params: { id: string };
-}) => {
+const AnimeDetailPage = async ({ params: { id } }: { params: { id: string } }) => {
   const animeData = getAnimeDetails(id);
   const charactersData = getAnimeCharacters(id);
   const staffData = getAnimeStaff(id);
@@ -75,11 +71,7 @@ const AnimeDetailPage = async ({
     charactersData,
     staffData,
   ]);
-  const [anime, characters, staff] = [
-    animeRes.data,
-    charactersRes.data,
-    staffRes.data,
-  ];
+  const [anime, characters, staff] = [animeRes.data, charactersRes.data, staffRes.data];
 
   const info: Info[] = [
     {
@@ -162,7 +154,10 @@ const AnimeDetailPage = async ({
       </header>
       <main className='mt-10 grid md:grid-cols-2 lg:grid-cols-4'>
         {/* Sidebar Section */}
-        <SidebarDetail anime={anime} info={info} />
+        <SidebarDetail
+          data={anime}
+          info={info}
+        />
         <div className='lg:col-span-3 mx-2'>
           {/* Breadcumbs */}
           <Breadcumbs items={breadcumbsItems} />
@@ -195,7 +190,10 @@ const AnimeDetailPage = async ({
               <h2 className='mb-3 font-semibold'>Characters</h2>
               <hr />
               {/* Characters Table	 */}
-              <CharactersTable characters={characters} />
+              <CharactersTable
+                characters={characters}
+                manga={false}
+              />
             </section>
             <section className='mt-12'>
               <h2 className='mb-3 font-semibold'>Staff</h2>

@@ -5,7 +5,10 @@ const RelatedTable = ({ relations }: { relations: RelatedTableProps[] }) => {
     <table className='w-fit'>
       <tbody>
         {relations.map((rel) => (
-          <tr className='' key={rel.relation}>
+          <tr
+            className=''
+            key={rel.relation}
+          >
             <td className='font-semibold text-end'>{rel.relation}: </td>
             <td>
               {rel.entry.map((en, i: number) => (

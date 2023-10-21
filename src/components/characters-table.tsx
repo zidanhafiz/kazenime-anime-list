@@ -2,7 +2,13 @@ import Image from 'next/image';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { Character } from '@/types';
 
-const CharactersTable = ({ characters }: { characters: Character[] }) => {
+const CharactersTable = ({
+  characters,
+  manga,
+}: {
+  characters: Character[];
+  manga: boolean;
+}) => {
   const defaultAvatar = '/male-icon.svg';
   return (
     <Table className='flex justify-between overflow-hidden items-stretch gap-8 w-full'>
@@ -33,29 +39,31 @@ const CharactersTable = ({ characters }: { characters: Character[] }) => {
                     <p>{chara.role}</p>
                   </div>
                 </TableCell>
-                <TableCell className='flex items-center gap-3'>
-                  <div className='text-right'>
-                    <p className='font-semibold'>
-                      {chara.voice_actors[0]?.person.name}
-                    </p>
-                    <p>Japanese</p>
-                  </div>
-                  <div className='text-right'>
-                    <Image
-                      className='max-w-[50px]'
-                      src={
-                        chara.voice_actors[0]
-                          ? chara.voice_actors[0].person.images.jpg.image_url
-                          : defaultAvatar
-                      }
-                      alt={chara.voice_actors[0]?.person.name}
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                </TableCell>
+                {!manga && (
+                  <TableCell className='flex items-center gap-3'>
+                    <div className='text-right'>
+                      <p className='font-semibold'>
+                        {chara.voice_actors[0]?.person.name}
+                      </p>
+                      <p>Japanese</p>
+                    </div>
+                    <div className='text-right'>
+                      <Image
+                        className='max-w-[50px]'
+                        src={
+                          chara.voice_actors[0]
+                            ? chara.voice_actors[0].person.images.jpg.image_url
+                            : defaultAvatar
+                        }
+                        alt={chara.voice_actors[0]?.person.name}
+                        width={100}
+                        height={100}
+                      />
+                    </div>
+                  </TableCell>
+                )}
               </TableRow>
-            ),
+            )
         )}
       </TableBody>
       <TableBody className='w-full'>
@@ -86,29 +94,31 @@ const CharactersTable = ({ characters }: { characters: Character[] }) => {
                     <p>{chara.role}</p>
                   </div>
                 </TableCell>
-                <TableCell className='flex items-center gap-3'>
-                  <div className='text-right'>
-                    <p className='font-semibold'>
-                      {chara.voice_actors[0]?.person.name}
-                    </p>
-                    <p>Japanese</p>
-                  </div>
-                  <div className='text-right'>
-                    <Image
-                      className='max-w-[50px]'
-                      src={
-                        chara.voice_actors[0]
-                          ? chara.voice_actors[0].person.images.jpg.image_url
-                          : defaultAvatar
-                      }
-                      alt={chara.voice_actors[0]?.person.name}
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                </TableCell>
+                {!manga && (
+                  <TableCell className='flex items-center gap-3'>
+                    <div className='text-right'>
+                      <p className='font-semibold'>
+                        {chara.voice_actors[0]?.person.name}
+                      </p>
+                      <p>Japanese</p>
+                    </div>
+                    <div className='text-right'>
+                      <Image
+                        className='max-w-[50px]'
+                        src={
+                          chara.voice_actors[0]
+                            ? chara.voice_actors[0].person.images.jpg.image_url
+                            : defaultAvatar
+                        }
+                        alt={chara.voice_actors[0]?.person.name}
+                        width={100}
+                        height={100}
+                      />
+                    </div>
+                  </TableCell>
+                )}
               </TableRow>
-            ),
+            )
         )}
       </TableBody>
     </Table>
