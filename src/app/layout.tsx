@@ -11,11 +11,7 @@ export const metadata: Metadata = {
   description: 'Anime and Manga List',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
       <body className={inter.className}>
@@ -28,6 +24,9 @@ export default function RootLayout({
           <div className='mx-[5%] md:mx-auto md:px-12 max-w-[1600px]'>
             <Header />
             {children}
+            <div>
+              <h5>Footer</h5>
+            </div>
           </div>
         </ThemeProvider>
       </body>

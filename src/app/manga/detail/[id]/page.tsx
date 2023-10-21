@@ -1,13 +1,37 @@
 import Breadcumbs from '@/components/breadcumbs';
+import CharactersTable from '@/components/characters-table';
+import RelatedTable from '@/components/related-table';
 import ScoreBoard from '@/components/score-board';
+import SidebarDetail from '@/components/sidebar-detail';
 import { BreadcumbsProps } from '@/types';
-import type { Metadata } from 'next';
+import type { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
 
-export const metadata: Metadata = {
-  title: 'Kazenime',
-  description: 'Manga Detail',
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const id = params.id;
+
+  // fetch data
+  const product = await fetch(`${url}/${id}/full`).then((res) => res.json());
+
+  // optionally access and extend (rather than replace) parent metadata
+  // const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: product.data.title + ' | Kazenime',
+    // openGraph: {
+    // 	images: ['/some-specific-page-image.jpg', ...previousImages],
+    // },
+  };
+}
 
 type Info = {
   type: string;
@@ -24,45 +48,69 @@ const getMangaDetails = async (id: string) => {
   return await res.json();
 };
 
-const MangaDetailPage = async ({
-  params: { id },
-}: {
-  params: { id: string };
-}) => {
-  const res = await getMangaDetails(id);
-  const manga = await res.data;
+const getMangaCharacters = async (id: string) => {
+  const res = await fetch(`${url}/${id}/characters`);
+  if (!res.ok) {
+    throw new Error('error get data');
+  }
+  return await res.json();
+};
+
+const MangaDetailPage = async ({ params: { id } }: { params: { id: string } }) => {
+  const [mangaData, charactersData] = [getMangaDetails(id), getMangaCharacters(id)];
+  const [mangaRes, charactersRes] = await Promise.all([mangaData, charactersData]);
+  const [manga, characters] = [mangaRes.data, charactersRes.data];
+
   const info: Info[] = [
-    {
-      type: 'Title',
-      value: manga.title,
-    },
-    {
-      type: 'Title Japanese',
-      value: manga.title_japanese,
-    },
     {
       type: 'Type',
       value: manga.type,
     },
     {
-      type: 'Source',
-      value: manga.source,
+      type: 'Volumes',
+      value: manga.volumes,
     },
     {
-      type: 'Episodes',
-      value: manga.episodes,
-    },
-    {
-      type: 'Duration',
-      value: manga.duration,
+      type: 'Chapters',
+      value: manga.chapters,
     },
     {
       type: 'Status',
       value: manga.status,
     },
     {
-      type: 'Rating',
-      value: manga.rating,
+      type: 'Published',
+      value: manga.published.string,
+    },
+    {
+      type: 'Genres',
+      value: manga.genres.map((genre: { name: string }, i: number) => {
+        return genre.name + (i !== manga.genres.length - 1 && ', ');
+      }),
+    },
+    {
+      type: 'Themes',
+      value: manga.themes.map((theme: { name: string }, i: number) => {
+        return theme.name + (i !== manga.themes.length - 1 && ', ');
+      }),
+    },
+    {
+      type: 'Demographics',
+      value: manga.demographics.map((demo: { name: string }, i: number) => {
+        return demo.name + (i !== manga.demographics.length - 1 && ', ');
+      }),
+    },
+    {
+      type: 'Serialization',
+      value: manga.serializations.map((seri: { name: string }, i: number) => {
+        return seri.name + (i !== manga.serializations.length - 1 && ', ');
+      }),
+    },
+    {
+      type: 'Authors',
+      value: manga.authors.map((author: { name: string }, i: number) => {
+        return author.name + (i !== manga.authors.length - 1 && ', ');
+      }),
     },
   ];
 
@@ -85,16 +133,10 @@ const MangaDetailPage = async ({
         <hr className='mt-6' />
       </header>
       <main className='mt-10 grid md:grid-cols-2 lg:grid-cols-4'>
-        <div>
-          <div className='w-full max-w-[300px]'>
-            <Image
-              src={manga.images.webp.large_image_url}
-              alt={manga.title}
-              width={600}
-              height={600}
-            />
-          </div>
-        </div>
+        <SidebarDetail
+          data={manga}
+          info={info}
+        />
         <div className='lg:col-span-3'>
           <Breadcumbs items={breadcumbsItems} />
           <div className='mt-6'>
@@ -111,23 +153,21 @@ const MangaDetailPage = async ({
               <hr />
               <p className='my-3'>{manga.background}</p>
             </section>
+            <section className='mt-12'>
+              <h6 className='mb-3 font-semibold'>Related Manga</h6>
+              <hr />
+              <RelatedTable relations={manga.relations} />
+            </section>
+            <section className='mt-12'>
+              <h2 className='mb-3 font-semibold'>Characters</h2>
+              <hr />
+              {/* Characters Table	 */}
+              <CharactersTable
+                characters={characters}
+                manga
+              />
+            </section>
           </main>
-          {/* <table className='table-auto w-full leading-8'> */}
-          {/*   <tbody> */}
-          {/*     {info.map((item: Info) => ( */}
-          {/*       <tr className='' key={item.type}> */}
-          {/*         <td className='w-[150px] align-top'>{item.type}</td> */}
-          {/*         <td className='w-5 align-top'>:</td> */}
-          {/*         <td className='align-top'> {item.value}</td> */}
-          {/*       </tr> */}
-          {/*     ))} */}
-          {/*     <tr className=''> */}
-          {/*       <td className='align-top'>Synopsis</td> */}
-          {/*       <td className='align-top'>:</td> */}
-          {/*       <td className='align-top'> {manga.synopsis}</td> */}
-          {/*     </tr> */}
-          {/*   </tbody> */}
-          {/* </table> */}
         </div>
       </main>
     </>

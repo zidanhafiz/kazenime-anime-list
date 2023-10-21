@@ -18,7 +18,7 @@ const SearchPage = () => {
   const page = params.get('page') ?? 1;
   const { data, isLoading, error } = useSWR(
     `${url}/${select}?q=${search}&page=${page}`,
-    fetcher,
+    fetcher
   );
   if (error) {
     return <h1>Sorry! something went wrong!</h1>;
@@ -31,7 +31,7 @@ const SearchPage = () => {
       ) : (
         <>
           <HeadTitle className='text-lg'>Search Result : {search}</HeadTitle>
-          <main className='flex items-strecth justify-center lg:justify-between flex-wrap gap-6 mt-10'>
+          <main className='flex items-strecth justify-center lg:justify-center flex-wrap gap-6 mt-10'>
             {data.data.map((item: Animes) => (
               <CardList
                 key={item.mal_id}
@@ -51,8 +51,8 @@ const SearchPage = () => {
             ) : (
               <p className='mb-4'>
                 showing {data.pagination.current_page * 25} to{' '}
-                {data.pagination.current_page * 25 + 25} of{' '}
-                {data.pagination.items.total} results
+                {data.pagination.current_page * 25 + 25} of {data.pagination.items.total}{' '}
+                results
               </p>
             )}
             <Pagination
