@@ -10,7 +10,7 @@ const RelatedTable = ({ relations }: { relations: RelatedTableProps[] }) => {
             key={rel.relation}
           >
             <td className='font-semibold text-end'>{rel.relation}: </td>
-            <td>
+            <td className=''>
               {rel.entry.map((en, i: number) => (
                 <a
                   href={en.url}
