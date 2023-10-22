@@ -1,7 +1,6 @@
-import { AnimesRecommend } from '@/app/anime/recommended/page';
-import CardList from '@/components/card-list';
 import HeadTitle from '@/components/head-title';
-import { BreadcumbsProps, SearchParamsProps } from '@/types';
+import RecommendList from '@/components/recommend-list';
+import { AnimesRecommend, BreadcumbsProps, SearchParamsProps } from '@/types';
 import { Metadata } from 'next';
 
 type MangasRecommend = AnimesRecommend;
@@ -40,11 +39,10 @@ const RecommendMangaPage = async ({ searchParams }: SearchParamsProps) => {
       <HeadTitle items={breadcumbsItems}>Recommended Manga</HeadTitle>
       <main className='flex min-h-screen items-strecth justify-center lg:justify-between flex-wrap gap-3 md:gap-6 mt-10'>
         {mangas.data.map((data: MangasRecommend) => (
-          <CardList
+          <RecommendList
             key={data.mal_id}
-            title={data.entry[0].title}
-            src={data.entry[0].images.webp.large_image_url}
-            link={`/manga/detail/${data.entry[0].mal_id}`}
+            data={data}
+            link='/manga/detail'
           />
         ))}
       </main>

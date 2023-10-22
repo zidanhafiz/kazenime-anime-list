@@ -99,3 +99,19 @@ export type RelatedTableProps = {
     url: string;
   }[];
 };
+
+interface Entry {
+  title: string;
+  images: ImageSrc;
+  mal_id: string;
+}
+
+export type AnimesRecommend = {
+  mal_id: string;
+  entry: Entry[];
+  content: string;
+  date: string;
+  user: {
+    username: string;
+  };
+};
