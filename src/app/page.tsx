@@ -2,19 +2,12 @@ import CardList from '@/components/card-list';
 import HeadTitle from '@/components/head-title';
 import Pagination from '@/components/pagination';
 import { Animes } from '@/types';
+import { getAllAniMangas } from '@/utils/fetch';
 
-const url = process.env.ANIME_API_URL;
-
-const getAllAnimes = async () => {
-  const res = await fetch(`${url}`);
-  if (!res.ok) {
-    throw new Error('Error broh');
-  }
-  return await res.json();
-};
+const url = `${process.env.ANIME_API_URL}`;
 
 export default async function Home() {
-  const animes = await getAllAnimes();
+  const animes = await getAllAniMangas(url, '1');
 
   return (
     <div>

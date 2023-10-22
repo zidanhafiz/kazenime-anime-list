@@ -2,6 +2,7 @@ import CardList from '@/components/card-list';
 import HeadTitle from '@/components/head-title';
 import Pagination from '@/components/pagination';
 import { Animes, BreadcumbsProps, SearchParamsProps } from '@/types';
+import { getAllAniMangas } from '@/utils/fetch';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,19 +10,11 @@ export const metadata: Metadata = {
   description: 'Anime list',
 };
 
-const url = process.env.ANIME_API_URL;
-
-const getAllAnimes = async (page: string) => {
-  const res = await fetch(`${url}?page=${page}`);
-  if (!res.ok) {
-    throw new Error('Error broh');
-  }
-  return await res.json();
-};
+const url = `${process.env.ANIME_API_URL}`;
 
 const AnimePage = async ({ searchParams }: SearchParamsProps) => {
-  const page = searchParams['page'] ?? 1;
-  const animes = await getAllAnimes(`${page}`);
+  const page = searchParams['page']?.toString() ?? '1';
+  const animes = await getAllAniMangas(url, page);
   const pagination = animes.pagination;
   const breadcumbsItems: BreadcumbsProps[] = [
     {

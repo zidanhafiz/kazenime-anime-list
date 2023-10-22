@@ -5,7 +5,7 @@ import Link from 'next/link';
 const Breadcumbs = ({ items }: { items: BreadcumbsProps[] }) => {
   const length = items.length;
   return (
-    <div className='flex gap-2 items-center text-base text-primary'>
+    <div className='flex gap-2 items-center text-xs md:text-base text-primary'>
       <Link
         href='/'
         className='flex gap-2 items-center w-fit max-w-[192px] truncate hover:underline'

@@ -7,8 +7,9 @@ import YouTubePlayer from '@/components/youtube-player';
 import CharactersTable from '@/components/characters-table';
 import StaffTable from '@/components/staff-table';
 import RelatedTable from '@/components/related-table';
+import { getAniMangaCharacters, getAniMangaDetails, getAnimeStaff } from '@/utils/fetch';
 
-const url = process.env.ANIME_API_URL;
+const url = `${process.env.ANIME_API_URL}`;
 
 type Props = {
   params: { id: string };
@@ -36,34 +37,12 @@ export async function generateMetadata(
   };
 }
 
-const getAnimeDetails = async (id: string) => {
-  const res = await fetch(`${url}/${id}/full`);
-  if (!res.ok) {
-    throw new Error('error get data');
-  }
-  return await res.json();
-};
-
-const getAnimeCharacters = async (id: string) => {
-  const res = await fetch(`${url}/${id}/characters`);
-  if (!res.ok) {
-    throw new Error('error get data');
-  }
-  return await res.json();
-};
-
-const getAnimeStaff = async (id: string) => {
-  const res = await fetch(`${url}/${id}/staff`);
-  if (!res.ok) {
-    throw new Error('error get data');
-  }
-  return await res.json();
-};
-
 const AnimeDetailPage = async ({ params: { id } }: { params: { id: string } }) => {
-  const animeData = getAnimeDetails(id);
-  const charactersData = getAnimeCharacters(id);
-  const staffData = getAnimeStaff(id);
+  const [animeData, charactersData, staffData] = [
+    getAniMangaDetails(url, id),
+    getAniMangaCharacters(url, id),
+    getAnimeStaff(url, id),
+  ];
   const [animeRes, charactersRes, staffRes] = await Promise.all([
     animeData,
     charactersData,

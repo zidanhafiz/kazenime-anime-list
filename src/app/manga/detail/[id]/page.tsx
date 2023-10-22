@@ -4,6 +4,7 @@ import RelatedTable from '@/components/related-table';
 import ScoreBoard from '@/components/score-board';
 import SidebarDetail from '@/components/sidebar-detail';
 import { BreadcumbsProps } from '@/types';
+import { getAniMangaCharacters, getAniMangaDetails } from '@/utils/fetch';
 import type { Metadata, ResolvingMetadata } from 'next';
 
 type Props = {
@@ -37,26 +38,13 @@ type Info = {
   value: string;
 };
 
-const url = process.env.MANGA_API_URL;
-
-const getMangaDetails = async (id: string) => {
-  const res = await fetch(`${url}/${id}/full`);
-  if (!res.ok) {
-    throw new Error('error get data');
-  }
-  return await res.json();
-};
-
-const getMangaCharacters = async (id: string) => {
-  const res = await fetch(`${url}/${id}/characters`);
-  if (!res.ok) {
-    throw new Error('error get data');
-  }
-  return await res.json();
-};
+const url = `${process.env.MANGA_API_URL}`;
 
 const MangaDetailPage = async ({ params: { id } }: { params: { id: string } }) => {
-  const [mangaData, charactersData] = [getMangaDetails(id), getMangaCharacters(id)];
+  const [mangaData, charactersData] = [
+    getAniMangaDetails(url, id),
+    getAniMangaCharacters(url, id),
+  ];
   const [mangaRes, charactersRes] = await Promise.all([mangaData, charactersData]);
   const [manga, characters] = [mangaRes.data, charactersRes.data];
 

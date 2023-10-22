@@ -2,6 +2,7 @@ import CardList from '@/components/card-list';
 import HeadTitle from '@/components/head-title';
 import Pagination from '@/components/pagination';
 import { BreadcumbsProps, Mangas, SearchParamsProps } from '@/types';
+import { getAllAniMangas } from '@/utils/fetch';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,19 +10,11 @@ export const metadata: Metadata = {
   description: 'Manga list',
 };
 
-const url = process.env.MANGA_API_URL;
-
-const getAllMangas = async (page: string) => {
-  const res = await fetch(`${url}?page=${page}`);
-  if (!res.ok) {
-    throw new Error('Error broh');
-  }
-  return await res.json();
-};
+const url = `${process.env.MANGA_API_URL}`;
 
 const MangaPage = async ({ searchParams }: SearchParamsProps) => {
-  const page = searchParams['page'] ?? 1;
-  const mangas = await getAllMangas(`${page}`);
+  const page = searchParams['page']?.toString() ?? '1';
+  const mangas = await getAllAniMangas(url, page);
   const pagination = mangas.pagination;
   const breadcumbsItems: BreadcumbsProps[] = [
     {

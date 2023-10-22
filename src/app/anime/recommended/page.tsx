@@ -3,25 +3,18 @@ import { AnimesRecommend, BreadcumbsProps, SearchParamsProps } from '@/types';
 import HeadTitle from '@/components/head-title';
 import Pagination from '@/components/pagination';
 import RecommendList from '@/components/recommend-list';
+import { getRecommendAnimes } from '@/utils/fetch';
 
 export const metadata: Metadata = {
   title: 'Recommended Anime - Kazenime',
   description: 'Recommended Anime list',
 };
 
-const url = process.env.API_URL;
-
-const getRecommendAnimes = async (page: string) => {
-  const res = await fetch(`${url}/recommendations/anime?page=${page}`);
-  if (!res.ok) {
-    throw new Error('Error broh');
-  }
-  return await res.json();
-};
+const url = `${process.env.API_URL}`;
 
 const RecommendAnimePage = async ({ searchParams }: SearchParamsProps) => {
-  const page = searchParams['page'] ?? 1;
-  const animes = await getRecommendAnimes(`${page}`);
+  const page = searchParams['page']?.toString() ?? '1';
+  const animes = await getRecommendAnimes(url, page);
   // const pagination = animes.pagination;
   const breadcumbsItems: BreadcumbsProps[] = [
     {

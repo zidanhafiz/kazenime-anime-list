@@ -2,6 +2,7 @@ import CardList from '@/components/card-list';
 import HeadTitle from '@/components/head-title';
 import Pagination from '@/components/pagination';
 import { BreadcumbsProps, Mangas, SearchParamsProps } from '@/types';
+import { getPopularMangas } from '@/utils/fetch';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,19 +10,11 @@ export const metadata: Metadata = {
   description: 'Popular Manga list',
 };
 
-const url = process.env.API_URL;
-
-const getPopularMangas = async (page: string) => {
-  const res = await fetch(`${url}/top/manga?page=${page}`);
-  if (!res.ok) {
-    throw new Error('Error broh');
-  }
-  return await res.json();
-};
+const url = `${process.env.API_URL}`;
 
 const PopularMangaPage = async ({ searchParams }: SearchParamsProps) => {
-  const page = searchParams['page'] ?? 1;
-  const mangas = await getPopularMangas(`${page}`);
+  const page = searchParams['page']?.toString() ?? '1';
+  const mangas = await getPopularMangas(url, page);
   const pagination = mangas.pagination;
   const breadcumbsItems: BreadcumbsProps[] = [
     {

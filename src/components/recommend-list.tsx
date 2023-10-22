@@ -8,8 +8,9 @@ const RecommendList = ({ data, link }: { data: AnimesRecommend; link: string }) 
     month: 'long',
     day: 'numeric',
   });
+
   return (
-    <div className='flex w-full gap-6 border p-4 rounded-lg bg-slate-100 dark:bg-gray-900'>
+    <div className='flex w-full gap-6 border p-4 rounded-lg bg-slate-100 dark:bg-gray-900 flex-wrap lg:flex-nowrap'>
       <div className='flex gap-3 w-[400px]'>
         <CardList
           title={data.entry[0].title}
