@@ -3,8 +3,8 @@ import { Badge } from './ui/badge';
 
 const ScoreBoard = ({ anime, manga }: ScoreBoardProps) => {
   return (
-    <div className='flex gap-12 px-6 py-3 items-center bg-slate-100 dark:bg-gray-900 border rounded-md'>
-      <div className='flex flex-col items-center justify-center border-r-2 pr-8'>
+    <div className='flex lg:gap-12 gap-3 md:px-6 lg:py-3 p-2 items-center flex-col lg:flex-row bg-slate-100 dark:bg-gray-900 border rounded-md'>
+      <div className='flex flex-col items-center justify-center lg:border-r-2 lg:pr-8'>
         <Badge className='my-1 text-xs'>SCORE</Badge>
         <p className='text-2xl font-semibold'>
           {anime ? anime?.score : manga && manga?.score}
@@ -17,8 +17,8 @@ const ScoreBoard = ({ anime, manga }: ScoreBoardProps) => {
         </p>
       </div>
       <div>
-        <div className='flex gap-8'>
-          <p className='text-xl'>
+        <div className='flex justify-between gap-4 md:gap-8'>
+          <p className='text-base md:text-xl'>
             Ranked #
             <strong>
               {anime
@@ -26,7 +26,7 @@ const ScoreBoard = ({ anime, manga }: ScoreBoardProps) => {
                 : manga && manga?.rank?.toLocaleString()}
             </strong>
           </p>
-          <p className='text-xl'>
+          <p className='text-base md:text-xl'>
             Popularity #
             <strong>
               {anime
@@ -34,7 +34,7 @@ const ScoreBoard = ({ anime, manga }: ScoreBoardProps) => {
                 : manga && manga?.popularity?.toLocaleString()}
             </strong>
           </p>
-          <p className='text-xl'>
+          <p className='text-base md:text-xl'>
             Favorites #
             <strong>
               {anime

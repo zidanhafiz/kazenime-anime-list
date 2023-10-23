@@ -124,12 +124,12 @@ const MangaDetailPage = async ({ params: { id } }: { params: { id: string } }) =
           data={manga}
           info={info}
         />
-        <div className='lg:col-span-3'>
+        <div className='lg:col-span-3 mx-2 mt-3 md:mt-0'>
           <Breadcumbs items={breadcumbsItems} />
           <div className='mt-6'>
             <ScoreBoard manga={manga} />
           </div>
-          <main className='my-6'>
+          <main className='my-6 md:text-start text-center'>
             <section>
               <h6 className='mb-3 font-semibold'>Synopsis</h6>
               <hr />

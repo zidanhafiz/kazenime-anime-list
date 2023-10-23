@@ -11,7 +11,7 @@ const CharactersTable = ({
 }) => {
   const defaultAvatar = '/male-icon.svg';
   return (
-    <Table className='flex justify-between overflow-hidden items-stretch gap-8 w-full'>
+    <Table className='flex justify-between text-start flex-col lg:flex-row overflow-hidden items-stretch gap-8 w-full'>
       <TableBody className='w-full'>
         {characters.map(
           (chara: Character, i: number) =>

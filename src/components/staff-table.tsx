@@ -5,7 +5,7 @@ import { Staff } from '@/types';
 const StaffTable = ({ staff }: { staff: Staff[] }) => {
   const defaultAvatar = '/male-icon.svg';
   return (
-    <Table className='flex justify-between overflow-hidden items-stretch gap-8 w-full'>
+    <Table className='flex justify-between flex-col lg:flex-row overflow-hidden text-start items-stretch gap-8 w-full'>
       <TableBody className='w-full'>
         {staff.map(
           (chara, i: number) =>

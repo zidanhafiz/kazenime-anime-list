@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const SidebarDetail = ({ data, info }: any) => {
   return (
-    <div className='border rounded-md bg-slate-100 dark:bg-gray-900 p-6 flex h-fit flex-col items-stretch max-w-[320px]'>
+    <div className='border rounded-md mx-auto lg:mx-0 bg-slate-100 dark:bg-gray-900 p-6 flex h-fit flex-col items-stretch max-w-[320px]'>
       <div className='w-full'>
         <Image
           src={data.images.webp.large_image_url}

@@ -129,20 +129,20 @@ const AnimeDetailPage = async ({ params: { id } }: { params: { id: string } }) =
         <span className='text-lg font-normal'>{anime.title_japanese}</span>
         <hr className='mt-6' />
       </header>
-      <main className='mt-10 grid md:grid-cols-2 lg:grid-cols-4'>
+      <main className='mt-10 md:grid md:grid-cols-2 lg:grid-cols-4'>
         {/* Sidebar Section */}
         <SidebarDetail
           data={anime}
           info={info}
         />
-        <div className='lg:col-span-3 mx-2'>
+        <div className='lg:col-span-3 mx-2 mt-3 md:mt-0'>
           {/* Breadcumbs */}
           <Breadcumbs items={breadcumbsItems} />
           {/* Score Board */}
           <div className='mt-6'>
             <ScoreBoard anime={anime} />
           </div>
-          <main className='my-6'>
+          <main className='my-6 md:text-start text-center'>
             <section>
               <h2 className='mb-3 font-semibold'>Synopsis</h2>
               <hr />
@@ -153,7 +153,7 @@ const AnimeDetailPage = async ({ params: { id } }: { params: { id: string } }) =
               <hr />
               <p className='my-3'>{anime.background}</p>
             </section>
-            <section className='mt-12'>
+            <section className='mt-12 flex flex-col md:block items-center'>
               <h2 className='mb-3 font-semibold'>Trailer</h2>
               <hr className='mb-3' />
               <YouTubePlayer videoId={anime?.trailer?.youtube_id} />
