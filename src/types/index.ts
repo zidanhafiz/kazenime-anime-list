@@ -115,3 +115,10 @@ export type AnimesRecommend = {
     username: string;
   };
 };
+
+export type CardshelfProps = {
+  children: React.ReactNode;
+  data: Animes[];
+  seeMore: string;
+  link: string;
+};

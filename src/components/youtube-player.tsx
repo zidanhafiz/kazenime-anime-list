@@ -14,8 +14,8 @@ const YoutubePlayer = ({ videoId }: YouTubeProps) => {
   const smallDevice = window.matchMedia('(min-width: 576px)');
   // Run it initially
   const opts: YouTubeProps['opts'] = {
-    height: '200',
-    width: '300',
+    height: '300',
+    width: '400',
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
@@ -28,7 +28,7 @@ const YoutubePlayer = ({ videoId }: YouTubeProps) => {
 
   return (
     <YouTube
-      opts={smallDevice.matches ? '' : opts}
+      opts={opts}
       videoId={videoId}
       onReady={onReady}
       onError={onError}

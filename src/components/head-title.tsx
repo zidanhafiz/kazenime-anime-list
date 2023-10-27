@@ -16,10 +16,12 @@ const HeadTitle = ({
     <div className='mt-14'>
       <h1 className={cn('text-2xl font-semibold text-center', className)}>{children}</h1>
       {items ? (
-        <div className='mt-4'>
-          <Breadcumbs items={items} />
+        <>
+          <div className='mt-8 flex flex-col items-center'>
+            <Breadcumbs items={items} />
+          </div>
           <hr className='mt-4' />
-        </div>
+        </>
       ) : (
         <hr className='mt-10' />
       )}
