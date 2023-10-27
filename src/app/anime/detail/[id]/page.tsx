@@ -156,7 +156,18 @@ const AnimeDetailPage = async ({ params: { id } }: { params: { id: string } }) =
             <section className='mt-12 flex flex-col md:block items-center'>
               <h2 className='mb-3 font-semibold'>Trailer</h2>
               <hr className='mb-3' />
-              <YouTubePlayer videoId={anime?.trailer?.youtube_id} />
+              <YouTubePlayer
+                videoId={anime?.trailer?.youtube_id}
+                width='800'
+                height='500'
+                className='hidden md:block'
+              />
+              <YouTubePlayer
+                videoId={anime?.trailer?.youtube_id}
+                width='350'
+                height='200'
+                className='md:hidden'
+              />
             </section>
             <section className='mt-12'>
               <h2 className='mb-3 font-semibold'>Related Anime</h2>

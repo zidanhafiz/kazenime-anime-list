@@ -14,37 +14,50 @@ import {
 
 const mangas: { title: string; href: string; description: string }[] = [
   {
-    title: 'All Manga',
+    title: 'All Mangas',
     href: '/manga',
-    description: 'See all manga',
+    description: 'See all mangas',
   },
   {
-    title: 'Popular Manga',
+    title: 'Popular Mangas',
     href: '/manga/popular',
-    description: 'See the most popular manga',
+    description: 'See the most popular mangas',
   },
   {
-    title: 'Recommended Manga',
+    title: 'Recommended Mangas',
     href: '/manga/recommended',
-    description: 'See our recommended manga',
+    description: 'See our recommended mangas',
   },
 ];
 
 const animes: { title: string; href: string; description: string }[] = [
   {
-    title: 'All Anime',
+    title: 'All Animes',
     href: '/anime',
-    description: 'See all anime',
+    description: 'See all animes',
   },
   {
-    title: 'Popular Anime',
+    title: 'Popular Animes',
     href: '/anime/popular',
-    description: 'See the most popular anime',
+    description: 'See the most popular animes',
   },
   {
-    title: 'Recommended Anime',
+    title: 'Recommended Animes',
     href: '/anime/recommended',
-    description: 'See our recommended anime',
+    description: 'See our recommended animes',
+  },
+];
+
+const genres: { title: string; href: string; description: string }[] = [
+  {
+    title: 'Anime Genres',
+    href: '/genres/anime',
+    description: 'See all animes genres',
+  },
+  {
+    title: 'Manga Genres',
+    href: '/genres/manga',
+    description: 'See all mangas genres',
   },
 ];
 export function NavMenu() {
@@ -84,16 +97,32 @@ export function NavMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
+          <NavigationMenuTrigger>Genres</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className='grid w-[300px] gap-3 p-4 md:w-[300px] md:grid-cols-1 lg:w-[300px] '>
+              {genres.map((genre) => (
+                <Link
+                  key={genre.title}
+                  title={genre.title}
+                  href={genre.href}
+                >
+                  {genre.description}
+                </Link>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NextLink
             href='/genres'
             legacyBehavior
             passHref
           >
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Genres
+              On 
             </NavigationMenuLink>
           </NextLink>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
       </NavigationMenuList>
     </NavigationMenu>
   );

@@ -30,7 +30,7 @@ export const getPopularAnimes = async (url: string, page: string) => {
   return await res.json();
 };
 
-export const getPopularMangas = async (url:string, page: string) => {
+export const getPopularMangas = async (url: string, page: string) => {
   const res = await fetch(`${url}/top/manga?page=${page}`);
   if (!res.ok) {
     throw new Error('Error get data');
@@ -56,6 +56,22 @@ export const getAniMangaCharacters = async (url: string, id: string) => {
 
 export const getAnimeStaff = async (url: string, id: string) => {
   const res = await fetch(`${url}/${id}/staff`);
+  if (!res.ok) {
+    throw new Error('error get data');
+  }
+  return await res.json();
+};
+
+export const getGenres = async (url: string, endPoint: string) => {
+  const res = await fetch(`${url}/genres${endPoint}`);
+  if (!res.ok) {
+    throw new Error('error get data');
+  }
+  return await res.json();
+};
+
+export const getAniMangasByGenres = async (url: string, id: string, page: string) => {
+  const res = await fetch(`${url}?genres=${id}&page=${page}`);
   if (!res.ok) {
     throw new Error('error get data');
   }

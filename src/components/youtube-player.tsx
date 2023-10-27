@@ -3,7 +3,12 @@
 import YouTube, { YouTubeProps } from 'react-youtube';
 import React from 'react';
 
-const YoutubePlayer = ({ videoId }: YouTubeProps) => {
+interface Props extends YouTubeProps {
+  width: string;
+  height: string;
+}
+
+const YoutubePlayer = ({ videoId, className, width, height }: Props) => {
   // Set up event handlers
   const onReady: YouTubeProps['onReady'] = (event) => {
     // Access the player instance
@@ -11,15 +16,10 @@ const YoutubePlayer = ({ videoId }: YouTubeProps) => {
     // For example, you can automatically play the video;
   };
 
-  const smallDevice = window.matchMedia('(min-width: 576px)');
   // Run it initially
   const opts: YouTubeProps['opts'] = {
-    height: '300',
-    width: '400',
-    playerVars: {
-      // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
-    },
+    height,
+    width,
   };
 
   const onError: YouTubeProps['onError'] = (error) => {
@@ -28,6 +28,7 @@ const YoutubePlayer = ({ videoId }: YouTubeProps) => {
 
   return (
     <YouTube
+      className={className}
       opts={opts}
       videoId={videoId}
       onReady={onReady}
