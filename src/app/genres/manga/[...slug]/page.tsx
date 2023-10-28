@@ -36,7 +36,6 @@ const MangaGenrePage = async ({ params: { slug }, searchParams }: Props) => {
   const genre = slug[1].replaceAll('_', ' ');
   const mangas = await getAniMangasByGenres(url, slug[0], page);
   const pagination = mangas.pagination;
-  console.log(page);
   const breadcumbsItems: BreadcumbsProps[] = [
     {
       name: 'Manga Genres',
