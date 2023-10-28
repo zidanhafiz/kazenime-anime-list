@@ -19,13 +19,7 @@ interface Props {
   };
 }
 
-const Pagination = ({
-  pagination,
-  link,
-}: {
-  pagination: Props;
-  link: string;
-}) => {
+const Pagination = ({ pagination, link }: { pagination: Props; link: string }) => {
   const router = useRouter();
   const currentPage = pagination.current_page;
   const visiblePageNumber = currentPage + 5;
@@ -41,7 +35,7 @@ const Pagination = ({
 
   useEffect(() => {
     router.push(`${link}page=${value}`);
-  }, [value]);
+  }, [value, link, router]);
 
   const getPageNumber = () => {
     for (let i = 1; i <= lastPage; i++) {
