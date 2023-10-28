@@ -11,6 +11,28 @@ export const monoton = Monoton({ weight: '400', subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Kazenime',
   description: 'Anime and Manga List',
+  metadataBase: new URL('http://localhost:3000'),
+  openGraph: {
+    title: 'Kazenime',
+    description: 'Anime and Manga List',
+    url: '',
+    siteName: 'Kazenime',
+    images: [
+      {
+        url: '/thumbnail.png',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/thumbnail.png',
+        width: 1800,
+        height: 1600,
+        alt: 'My custom alt',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

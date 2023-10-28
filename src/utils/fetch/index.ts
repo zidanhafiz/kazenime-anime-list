@@ -1,5 +1,7 @@
 export const getAllAniMangas = async (url: string, page: string) => {
-  const res = await fetch(`${url}?page=${page}`);
+  const res = await fetch(`${url}?page=${page}`, {
+    next: { revalidate: 3600 },
+  });
   if (!res.ok) {
     throw new Error('Error get data');
   }
@@ -7,7 +9,9 @@ export const getAllAniMangas = async (url: string, page: string) => {
 };
 
 export const getRecommendAnimes = async (url: string, page: string) => {
-  const res = await fetch(`${url}/recommendations/anime?page=${page}`);
+  const res = await fetch(`${url}/recommendations/anime?page=${page}`, {
+    next: { revalidate: 3600 },
+  });
   if (!res.ok) {
     throw new Error('Error get data');
   }
@@ -15,7 +19,9 @@ export const getRecommendAnimes = async (url: string, page: string) => {
 };
 
 export const getRecommendMangas = async (url: string, page: string) => {
-  const res = await fetch(`${url}/recommendations/manga?page=${page}`);
+  const res = await fetch(`${url}/recommendations/manga?page=${page}`, {
+    next: { revalidate: 3600 },
+  });
   if (!res.ok) {
     throw new Error('Error get data');
   }
@@ -23,7 +29,9 @@ export const getRecommendMangas = async (url: string, page: string) => {
 };
 
 export const getPopularAnimes = async (url: string, page: string) => {
-  const res = await fetch(`${url}/top/anime?page=${page}`);
+  const res = await fetch(`${url}/top/anime?page=${page}`, {
+    next: { revalidate: 3600 },
+  });
   if (!res.ok) {
     throw new Error('Error get data');
   }
@@ -31,7 +39,9 @@ export const getPopularAnimes = async (url: string, page: string) => {
 };
 
 export const getPopularMangas = async (url: string, page: string) => {
-  const res = await fetch(`${url}/top/manga?page=${page}`);
+  const res = await fetch(`${url}/top/manga?page=${page}`, {
+    next: { revalidate: 3600 },
+  });
   if (!res.ok) {
     throw new Error('Error get data');
   }
@@ -39,7 +49,9 @@ export const getPopularMangas = async (url: string, page: string) => {
 };
 
 export const getAniMangaDetails = async (url: string, id: string) => {
-  const res = await fetch(`${url}/${id}/full`);
+  const res = await fetch(`${url}/${id}/full`, {
+    next: { revalidate: 3600 },
+  });
   if (!res.ok) {
     throw new Error('error get data');
   }
@@ -47,7 +59,9 @@ export const getAniMangaDetails = async (url: string, id: string) => {
 };
 
 export const getAniMangaCharacters = async (url: string, id: string) => {
-  const res = await fetch(`${url}/${id}/characters`);
+  const res = await fetch(`${url}/${id}/characters`, {
+    next: { revalidate: 3600 },
+  });
   if (!res.ok) {
     throw new Error('error get data');
   }
@@ -55,7 +69,9 @@ export const getAniMangaCharacters = async (url: string, id: string) => {
 };
 
 export const getAnimeStaff = async (url: string, id: string) => {
-  const res = await fetch(`${url}/${id}/staff`);
+  const res = await fetch(`${url}/${id}/staff`, {
+    next: { revalidate: 3600 },
+  });
   if (!res.ok) {
     throw new Error('error get data');
   }
@@ -63,7 +79,9 @@ export const getAnimeStaff = async (url: string, id: string) => {
 };
 
 export const getGenres = async (url: string, endPoint: string) => {
-  const res = await fetch(`${url}/genres${endPoint}`);
+  const res = await fetch(`${url}/genres${endPoint}`, {
+    next: { revalidate: 3600 },
+  });
   if (!res.ok) {
     throw new Error('error get data');
   }
@@ -71,7 +89,19 @@ export const getGenres = async (url: string, endPoint: string) => {
 };
 
 export const getAniMangasByGenres = async (url: string, id: string, page: string) => {
-  const res = await fetch(`${url}?genres=${id}&page=${page}`);
+  const res = await fetch(`${url}?genres=${id}&page=${page}`, {
+    next: { revalidate: 3600 },
+  });
+  if (!res.ok) {
+    throw new Error('error get data');
+  }
+  return await res.json();
+};
+
+export const getSeasonNow = async (url: string, page: string) => {
+  const res = await fetch(`${url}/seasons/now?page=${page}`, {
+    next: { revalidate: 3600 },
+  });
   if (!res.ok) {
     throw new Error('error get data');
   }
