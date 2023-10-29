@@ -7,27 +7,21 @@ import {
   getSeasonNow,
 } from '@/utils/fetch';
 
-const url = `${process.env.ANIME_API_URL}`;
-const apiUrl = `${process.env.API_URL}`;
+const url = process.env.ANIME_API_URL;
+const apiUrl = process.env.API_URL;
 
 export default async function Home() {
   const [animesData, topAnimesData, topMangasData, seasonNowData] = [
-    getAllAniMangas(url, '1'),
-    getPopularAnimes(apiUrl, '1'),
-    getPopularMangas(apiUrl, '1'),
-    getSeasonNow(apiUrl, '1'),
+    await getAllAniMangas(url, '1'),
+    await getPopularAnimes(apiUrl, '1'),
+    await getPopularMangas(apiUrl, '1'),
+    await getSeasonNow(apiUrl, '1'),
   ];
-  const [animesRes, topAnimesRes, topMangasRes, seasonNowRes] = await Promise.all([
-    animesData,
-    topAnimesData,
-    topMangasData,
-    seasonNowData,
-  ]);
   const [animes, topAnimes, topMangas, seasonNow] = [
-    animesRes.data,
-    topAnimesRes.data,
-    topMangasRes.data,
-    seasonNowRes.data,
+    animesData.data,
+    topAnimesData.data,
+    topMangasData.data,
+    seasonNowData.data,
   ];
 
   const seasonAndYear = `${

@@ -9,7 +9,7 @@ import StaffTable from '@/components/staff-table';
 import RelatedTable from '@/components/related-table';
 import { getAniMangaCharacters, getAniMangaDetails, getAnimeStaff } from '@/utils/fetch';
 
-const url = `${process.env.ANIME_API_URL}`;
+const url = process.env.ANIME_API_URL;
 
 type Props = {
   params: { id: string };
@@ -39,16 +39,15 @@ export async function generateMetadata(
 
 const AnimeDetailPage = async ({ params: { id } }: { params: { id: string } }) => {
   const [animeData, charactersData, staffData] = [
-    getAniMangaDetails(url, id),
-    getAniMangaCharacters(url, id),
-    getAnimeStaff(url, id),
+    await getAniMangaDetails(url, id),
+    await getAniMangaCharacters(url, id),
+    await getAnimeStaff(url, id),
   ];
-  const [animeRes, charactersRes, staffRes] = await Promise.all([
-    animeData,
-    charactersData,
-    staffData,
-  ]);
-  const [anime, characters, staff] = [animeRes.data, charactersRes.data, staffRes.data];
+  const [anime, characters, staff] = [
+    animeData.data,
+    charactersData.data,
+    staffData.data,
+  ];
 
   const info: Info[] = [
     {

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Recommend Manga list',
 };
 
-const url = `${process.env.API_URL}`;
+const url = process.env.API_URL;
 
 const RecommendMangaPage = async ({ searchParams }: SearchParamsProps) => {
   const page = searchParams['page']?.toString() ?? '1';

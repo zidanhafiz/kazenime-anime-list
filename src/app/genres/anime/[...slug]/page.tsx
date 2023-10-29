@@ -5,25 +5,16 @@ import { Animes, BreadcumbsProps, SearchParamsProps } from '@/types';
 import { getAniMangasByGenres } from '@/utils/fetch';
 import { Metadata, ResolvingMetadata } from 'next';
 
-const url = `${process.env.ANIME_API_URL}`;
+const url = process.env.ANIME_API_URL;
 
 export async function generateMetadata(
   { params: { slug } }: { params: { slug: string[] } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const title = slug[1].replaceAll('_', ' ');
-  // read route params
-  // fetch data
-  // const product = await fetch(`${url}/${slug[0]}/full`).then((res) => res.json());
-
-  // optionally access and extend (rather than replace) parent metadata
-  // const previousImages = (await parent).openGraph?.images || [];
 
   return {
     title: title + ' - Kazenime',
-    // openGraph: {
-    // 	images: ['/some-specific-page-image.jpg', ...previousImages],
-    // },
   };
 }
 
