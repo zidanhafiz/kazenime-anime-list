@@ -11,7 +11,6 @@ export const monoton = Monoton({ weight: '400', subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Kazenime',
   description: 'Anime and Manga List',
-  metadataBase: new URL('http://localhost:3000'),
   openGraph: {
     title: 'Kazenime',
     description: 'Anime and Manga List',
