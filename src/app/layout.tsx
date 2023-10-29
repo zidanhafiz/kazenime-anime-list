@@ -17,6 +17,19 @@ export const metadata: Metadata = {
     description: 'Anime and Manga List',
     url: 'kazenime.vercel.app',
     siteName: 'Kazenime',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/opengraph-image.png',
+        width: 1800,
+        height: 1600,
+        alt: 'My custom alt',
+      },
+    ],
     locale: 'en_US',
     type: 'website',
   },
