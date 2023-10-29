@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Anime Genres list',
 };
 
-const url = `${process.env.API_URL}`;
+const url = process.env.API_URL;
 
 const GenresPage = async () => {
   const breadcumbsItems: BreadcumbsProps[] = [

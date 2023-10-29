@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Popular Anime list',
 };
 
-const url = `${process.env.API_URL}`;
+const url = process.env.API_URL;
 
 const PopularAnimePage = async ({ searchParams }: SearchParamsProps) => {
   const page = searchParams['page']?.toString() ?? '1';

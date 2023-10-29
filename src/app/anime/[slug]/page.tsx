@@ -3,7 +3,7 @@ import CardList from '@/components/card-list';
 import HeadTitle from '@/components/head-title';
 import Pagination from '@/components/pagination';
 import { Animes, BreadcumbsProps, SearchParamsProps } from '@/types';
-import { getAllAniMangas, getSeasonNow } from '@/utils/fetch';
+import { getSeasonNow } from '@/utils/fetch';
 import { Metadata, ResolvingMetadata } from 'next';
 
 const url = `${process.env.API_URL}`;

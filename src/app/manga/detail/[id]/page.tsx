@@ -38,15 +38,14 @@ type Info = {
   value: string;
 };
 
-const url = `${process.env.MANGA_API_URL}`;
+const url = process.env.MANGA_API_URL;
 
 const MangaDetailPage = async ({ params: { id } }: { params: { id: string } }) => {
   const [mangaData, charactersData] = [
-    getAniMangaDetails(url, id),
-    getAniMangaCharacters(url, id),
+    await getAniMangaDetails(url, id),
+    await getAniMangaCharacters(url, id),
   ];
-  const [mangaRes, charactersRes] = await Promise.all([mangaData, charactersData]);
-  const [manga, characters] = [mangaRes.data, charactersRes.data];
+  const [manga, characters] = [mangaData.data, charactersData.data];
 
   const info: Info[] = [
     {
